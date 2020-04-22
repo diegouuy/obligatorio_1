@@ -8,5 +8,38 @@ namespace Obligatorio1
 {
     class Centro
     {
+        #region Atributos
+        private string nombre;
+        private string direccion;
+        private List<Voluntario> voluntarios;
+        private List<Donacion> donaciones;
+        #endregion
+
+        #region Propiedades
+        public string Nombre
+        {
+            get { return nombre; }
+        }
+
+        public string Direccion
+        {
+            get { return direccion; }
+        }
+
+        public List<Voluntario> Voluntarios
+        {
+            get { return voluntarios; }
+        }
+
+        public List<Donacion> Donacion
+        {
+            get { return donaciones; }
+        }
+
+        #endregion
+
+        #region Metodos
+        #endregion
+
     }
 }
