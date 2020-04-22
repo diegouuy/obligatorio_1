@@ -11,6 +11,7 @@ namespace Obligatorio1
         #region Atributos
         private float valorDonacion;
         private float valorDesc;
+        private List<Producto> prodDonados;
         #endregion
 
         #region Propiedades
@@ -21,6 +22,10 @@ namespace Obligatorio1
         public float ValorDesc
         {
             get { return valorDesc; }
+        }
+        public List<Producto> ProdDonados
+        {
+            get { return ProdDonados; }
         }
         #endregion
 
