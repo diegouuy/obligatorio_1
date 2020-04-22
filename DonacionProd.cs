@@ -8,5 +8,29 @@ namespace Obligatorio1
 {
     class DonacionProd : Donacion
     {
+        #region Atributos
+        private float valorDonacion;
+        private float valorDesc;
+        #endregion
+
+        #region Propiedades
+        public float ValorDonacion
+        {
+            get { return valorDonacion; }
+        }
+        public float ValorDesc
+        {
+            get { return valorDesc; }
+        }
+        #endregion
+
+        #region Metodos
+        public DonacionProd(float valorDonacion, float valorDesc)
+        {
+            this.valorDonacion = valorDonacion;
+            this.valorDesc = valorDesc;
+        }
+
+        #endregion
     }
 }
