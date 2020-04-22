@@ -25,7 +25,7 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
-        public DonacionEcon(float valorDonacion, float valorDesc)
+        public DonacionEcon(float valorDonacion, float valorDesc, DateTime fecha, Centro centroRecepcion) : base(fecha, centroRecepcion)
         {
             this.valorDonacion = valorDonacion;
             this.valorDesc = valorDesc;
