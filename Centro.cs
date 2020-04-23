@@ -9,6 +9,8 @@ namespace Obligatorio1
     class Centro
     {
         #region Atributos
+        private int id;
+        private static int ultimoId;
         private string nombre;
         private string direccion;
         private List<Voluntario> voluntarios;
@@ -44,6 +46,7 @@ namespace Obligatorio1
         {
             voluntarios = new List<Voluntario>();
             donaciones = new List<Donacion>();
+            this.id = ++ultimoId;
             this.nombre = nombre;
             this.direccion = direccion;
         }

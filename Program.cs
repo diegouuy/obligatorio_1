@@ -13,7 +13,7 @@ namespace Obligatorio1
             //Inicio de clase Sistema
             Sistema unS = new Sistema();
 
-            //Menu en pantalla
+            //MENU DE SELECCION
 
             int opcion = 0;
             bool salir = false;
@@ -28,12 +28,13 @@ namespace Obligatorio1
                     case 0:
                         salir = true;
                         break;
-                    //Listar productos disponibles para donación
+                    //Listar productos disponibles para donación.
                     case 1:
                         ListarProductos(unS);
                         break;
+                    //Seleccionar un centro de recepción. Lista voluntarios para centro seleccionado.
                     case 2:
-                        salir = true;
+                        ListarVoluntariosEnCentro(unS);
                         break;
                     case 3:
                         salir = true;
@@ -84,6 +85,61 @@ namespace Obligatorio1
             Console.WriteLine();
             Console.WriteLine("Presione cualquier tecla para volver al Menu principal");
             Console.ReadKey();
+        }
+
+        //
+        static void ListarVoluntariosEnCentro(Sistema unS)
+        {
+            int centroSeleccionado;
+            List<Voluntario> listaVoluntarios;
+            int numeroDeCentros = unS.Centros.Count;
+            if (numeroDeCentros >= 1)
+            {
+                string mensaje = "Ingrese un numero de la lista para seleccionar el Centro de Recepción o ingrese 0 para volver al menu principal\n";
+                int numeroOpcion = 0;
+                foreach (Centro unC in unS.Centros)
+                {
+                    mensaje += ++numeroOpcion + " - " + unC.Nombre + "\n";
+                }
+                bool salir = false;
+                while (!salir)
+                {
+                    centroSeleccionado = SolicitarNumero(0, numeroDeCentros, mensaje);
+                    if (centroSeleccionado != 0)
+                    {
+                        --centroSeleccionado;
+                        listaVoluntarios = unS.Centros[centroSeleccionado].Voluntarios;
+                        int cantidadVoluntarios = listaVoluntarios.Count;
+                        if (cantidadVoluntarios >= 1)
+                        {
+                            Console.Clear();
+                            Console.WriteLine("Mostrando Voluntarios del centro " + unS.Centros[centroSeleccionado].Nombre);
+                            foreach(Voluntario unV in listaVoluntarios)
+                            {
+                                Console.WriteLine(unV);
+                            }
+                            Console.WriteLine("Presione cualquier tecla para volver al menu anterior.");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("El Centro " + unS.Centros[centroSeleccionado].Nombre + " no tiene Voluntarios asignados. Presione cualquier tecla para volver al menu anterior.");
+                            Console.ReadKey();
+                        }
+                    }
+                    else
+                    {
+                        salir = true;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No hay Centros creados en el sistema");
+            }
+            
+
         }
 
     }
