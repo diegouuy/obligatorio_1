@@ -1,22 +1,22 @@
 ﻿<Properties StartupConfiguration="{9911A213-6E66-4397-ADA3-C0BB393166D0}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Producto.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DonacionEcon.cs">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="1" />
-      <File FileName="Donacion.cs" Line="12" Column="37" />
-      <File FileName="DonacionProd.cs" Line="33" Column="113" />
-      <File FileName="DonacionEcon.cs" Line="1" Column="1" />
-      <File FileName="Centro.cs" Line="1" Column="1" />
-      <File FileName="Producto.cs" Line="13" Column="37" />
+      <File FileName="Sistema.cs" Line="119" Column="92" />
+      <File FileName="DonacionProd.cs" Line="22" Column="23" />
+      <File FileName="DonacionEcon.cs" Line="28" Column="59" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Obligatorio1" expanded="True">
             <Node name="Obligatorio1" expanded="True">
-              <Node name="Producto.cs" selected="True" />
+              <Node name="DonacionEcon.cs" selected="True" />
             </Node>
           </Node>
         </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

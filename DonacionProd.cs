@@ -30,7 +30,7 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
-        public DonacionProd(float valorDonacion, float valorDesc, DateTime fecha, Centro centroRecepcion): base(fecha,centroRecepcion)
+        public DonacionProd(decimal valorDonacion, decimal valorDesc, DateTime fecha, Centro centroRecepcion): base(fecha,centroRecepcion)
         {
             this.valorDonacion = valorDonacion;
             this.valorDesc = valorDesc;
