@@ -40,8 +40,7 @@ namespace Obligatorio1
 
         #region Metodos
 
-        //Consturctor Sistema
-        //*******************
+        //CONSTRUCTOR SISTEMA
         public Sistema()
         {
             centros = new List<Centro>();
@@ -50,12 +49,11 @@ namespace Obligatorio1
             voluntarios = new List<Voluntario>();
             PrecargaCentros();
             //PrecargaDonaciones();
-            //PrecargaProductos();
+            PrecargaProductos();
             //PrecargaVoluntarios();
         }
 
-        //Metodos de precarga
-        //*******************
+        //PRECARGA
 
         private void PrecargaCentros() //AgregarCentro(nombre: string, direccion: string)
         {
@@ -78,9 +76,21 @@ namespace Obligatorio1
         //    AgregarDonacionProducto(04 / 24 / 2019, "Paysandu", "Canelones 785");
         //    AgregarDonacionProducto(04 / 24 / 2019, "Tacuarembo", "Mercedes 1324");
 
-        //}
+        private void PrecargaProductos()
+        {
+            AltaProducto("Agua nativa", 2, 39.4m, 1);
+            AltaProducto("Agua salus", 2.5m, 50, 1);
+            AltaProducto("Arroz", 5, 120, 3);
+            AltaProducto("Fideos", 5, 80, 3);
+            AltaProducto("Pan", 0.5m, 50, 2);
+            AltaProducto("Galletas", 0.5m, 130, 2);
+            AltaProducto("Panio de piso", 0.3m, 56, 4);
+            AltaProducto("Lavandina", 2, 70, 4);
+            AltaProducto("Jabon de banio", 1, 140, 5);
+            AltaProducto("Jabon liquido", 3, 110, 5);
+        }
 
-      
+
         //private void PrecargaVoluntarios() //MM/dd/yyyy //AgregarVoluntario(nombre: string, cedula: int, telefono: int, fechaNac: date)
         //{
         //    AgregarVoluntario("Edhys", 47479537, 098650104, 04/24/2019);
@@ -94,8 +104,6 @@ namespace Obligatorio1
         //    AgregarVoluntario("Luciana", 45678234, 098123098, 04 / 24 / 2019);
         //    AgregarVoluntario("Ornella", 23459876, 097543654, 04 / 24 / 2019);
         //}
-
-        #endregion
 
         //public static List<Producto> ProductosDisponibles()
         //{
@@ -113,6 +121,12 @@ namespace Obligatorio1
             Centro centroRecepcion = BuscarCentro(nombreCentro);
             DonacionEcon unaDe = new DonacionEcon(valorDonacion, fecha, centroRecepcion);
             donaciones.Add(unaDe);
+        }
+
+        public void AltaProducto(string nombre, decimal peso, decimal precio, int tipo)
+        {
+            Producto unP = new Producto(nombre, peso, precio, tipo);
+            productos.Add(unP);
         }
 
         //BUSQUEDAS
@@ -133,5 +147,12 @@ namespace Obligatorio1
             }
             return elCentro;
         }
+
+
+        //LISTAR
+
+         
+
+        #endregion
     }
 }

@@ -53,17 +53,20 @@ namespace Obligatorio1
 
         #region Metodos
 
-        //Constructor
-        //***********
-
-        public Producto(string nombre, decimal peso, decimal precio, TipoProducto tipo)
+        public Producto(string nombre, decimal peso, decimal precio, int tipo)
         {
             this.id = ++ultimoId;
             this.nombre = nombre;
             this.peso = peso;
             this.precio = precio;
-            this.tipo = tipo;
+            this.tipo = (TipoProducto)tipo;
 
+        }
+
+        public override string ToString()
+        {
+            string retorno = id + " - " + nombre + " - " + peso + " - " + precio + " - " + tipo;
+            return retorno;
         }
 
         #endregion
