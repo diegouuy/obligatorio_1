@@ -109,6 +109,10 @@ namespace Obligatorio1
 
         #endregion
 
+        //public static List<Producto> ProductosDisponibles()
+        //{
+        //    return productos;
+        //}
 
         public void AgregarCentro(string nombre, string direccion)
         {
