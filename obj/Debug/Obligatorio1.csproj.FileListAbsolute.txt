@@ -5,3 +5,10 @@ C:\Users\diego\ORT\P2\Obligatorio\Git\obligatorio_1\bin\Debug\Obligatorio1.exe
 C:\Users\diego\ORT\P2\Obligatorio\Git\obligatorio_1\bin\Debug\Obligatorio1.pdb
 C:\Users\diego\ORT\P2\Obligatorio\Git\obligatorio_1\obj\Debug\Obligatorio1.exe
 C:\Users\diego\ORT\P2\Obligatorio\Git\obligatorio_1\obj\Debug\Obligatorio1.pdb
+C:\Users\diego\github\obligatorio_1\bin\Debug\Obligatorio1.exe.config
+C:\Users\diego\github\obligatorio_1\bin\Debug\Obligatorio1.exe
+C:\Users\diego\github\obligatorio_1\bin\Debug\Obligatorio1.pdb
+C:\Users\diego\github\obligatorio_1\obj\Debug\Obligatorio1.csprojAssemblyReference.cache
+C:\Users\diego\github\obligatorio_1\obj\Debug\Obligatorio1.csproj.CoreCompileInputs.cache
+C:\Users\diego\github\obligatorio_1\obj\Debug\Obligatorio1.exe
+C:\Users\diego\github\obligatorio_1\obj\Debug\Obligatorio1.pdb
