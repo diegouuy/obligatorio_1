@@ -77,6 +77,10 @@ namespace Obligatorio1
 
         //}
 
+        //public static List<Producto> ProductosDisponibles()
+        //{
+        //    return productos;
+        //}
 
         #endregion
 
