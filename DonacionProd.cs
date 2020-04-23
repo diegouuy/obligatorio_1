@@ -9,24 +9,24 @@ namespace Obligatorio1
     class DonacionProd : Donacion
     {
         #region Atributos
-        private float valorDonacion;
-        private float valorDesc;
-        private List<Producto> prodDonados;
+        private decimal valorDonacion;
+        private decimal valorDesc;
+        //private List<Producto> prodDonados;
         #endregion
 
         #region Propiedades
-        public float ValorDonacion
+        public decimal ValorDonacion
         {
             get { return valorDonacion; }
         }
-        public float ValorDesc
+        public decimal ValorDesc
         {
             get { return valorDesc; }
         }
-        public List<Producto> ProdDonados
-        {
-            get { return ProdDonados; }
-        }
+        //public List<Producto> ProdDonados
+        //{
+        //    get { return ProdDonados; }
+        //}
         #endregion
 
         #region Metodos

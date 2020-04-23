@@ -28,9 +28,11 @@ namespace Obligatorio1
                 opcion = SolicitarNumero(0, 4, mensaje);
                 switch (opcion)
                 {
+                    //Salir
                     case 0:
                         salir = true;
                         break;
+                    // 
                     case 1:
                         salir = true;
                         break;
@@ -46,14 +48,14 @@ namespace Obligatorio1
                 }
             }
 
-            //Sistema.ProductosDisponibles();
-
         }
 
         //FUNCIONES DEL MENU
+
+        //Muestra mensaje y solicita el ingreso de un numero
         static public int SolicitarNumero(int desde, int hasta, string mensaje)
         {
-            int numIngresado = 0;
+            int numIngresado;
             do
             {
                 Console.Clear();
@@ -63,5 +65,9 @@ namespace Obligatorio1
             while (numIngresado < desde || numIngresado > hasta);
             return numIngresado;
         }
+
+        //REQUERIMIENTOS DEL MENU EN CONSOLA
+
+        //Listar productos disponibles para donacion
     }
 }
