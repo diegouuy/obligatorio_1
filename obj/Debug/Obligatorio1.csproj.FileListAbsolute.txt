@@ -1,0 +1,7 @@
+/Users/edhyssantos/Desktop/obligatorio_1/obj/Debug/Obligatorio1.csprojAssemblyReference.cache
+/Users/edhyssantos/Desktop/obligatorio_1/obj/Debug/Obligatorio1.csproj.CoreCompileInputs.cache
+/Users/edhyssantos/Desktop/obligatorio_1/bin/Debug/Obligatorio1.exe.config
+/Users/edhyssantos/Desktop/obligatorio_1/bin/Debug/Obligatorio1.exe
+/Users/edhyssantos/Desktop/obligatorio_1/bin/Debug/Obligatorio1.pdb
+/Users/edhyssantos/Desktop/obligatorio_1/obj/Debug/Obligatorio1.exe
+/Users/edhyssantos/Desktop/obligatorio_1/obj/Debug/Obligatorio1.pdb
