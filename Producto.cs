@@ -60,7 +60,6 @@ namespace Obligatorio1
             this.peso = peso;
             this.precio = precio;
             this.tipo = (TipoProducto)tipo;
-
         }
 
         public override string ToString()
