@@ -39,6 +39,16 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
+
+        public Centro (string nombre, string direccion)
+        {
+            voluntarios = new List<Voluntario>();
+            donaciones = new List<Donacion>();
+            this.nombre = nombre;
+            this.direccion = direccion;
+        }
+
+        
         #endregion
 
     }
