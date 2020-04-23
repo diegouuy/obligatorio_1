@@ -36,7 +36,7 @@ namespace Obligatorio1
             get { return fechaNacimiento; }
         }
         #endregion
-
+        test
         #region Metodos
 
         //Constructor
