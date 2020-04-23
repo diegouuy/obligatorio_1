@@ -36,7 +36,7 @@ namespace Obligatorio1
             get { return fechaNacimiento; }
         }
         #endregion
-        test
+
         #region Metodos
 
         //Constructor
@@ -50,7 +50,11 @@ namespace Obligatorio1
             this.fechaNacimiento = fechaNacimiento;
         }
 
-
+        public override string ToString()
+        {
+            string retorno = "- " + nombre + " ; CI: " + cedula + " ; Telefono: " + telefono + " ; Fecha de nacimiento: " + fechaNacimiento;
+            return retorno;
+        }
 
         #endregion
 
