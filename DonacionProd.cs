@@ -11,7 +11,7 @@ namespace Obligatorio1
         #region Atributos
         private decimal valorDonacion;
         private decimal valorDesc;
-        //private List<Producto> prodDonados;
+        private List<Producto> prodDonados;
         #endregion
 
         #region Propiedades
@@ -23,17 +23,40 @@ namespace Obligatorio1
         {
             get { return valorDesc; }
         }
-        //public List<Producto> ProdDonados
-        //{
-        //    get { return ProdDonados; }
-        //}
+        public List<Producto> ProdDonados
+        {
+            get { return ProdDonados; }
+        }
         #endregion
 
         #region Metodos
-        public DonacionProd(decimal valorDonacion, decimal valorDesc, DateTime fecha, Centro centroRecepcion): base(fecha,centroRecepcion)
+        public DonacionProd(decimal valorDonacion, DateTime fecha, List<Producto> listaProdDonados): base(fecha)
         {
+            decimal valorDesc = DescDonacionProd(valorDonacion);
             this.valorDonacion = valorDonacion;
             this.valorDesc = valorDesc;
+            prodDonados = listaProdDonados;
+        }
+            
+        public static decimal DescDonacionProd(decimal importeDonacion)
+        {
+            //Recibe el monto de la donacion economica, calcula el descuento y lo devuelve
+            //Menor a 1000 - 0% 
+            //Entre 1000 y 2000 - 10 %
+            //Mayor a 2000 - 12 %
+            decimal montoDescuento = 0;
+            if (importeDonacion >= 1000)
+            {
+                if (importeDonacion >= 2000)
+                {
+                    montoDescuento = importeDonacion * 12 / 1000;
+                }
+                else
+                {
+                    montoDescuento = importeDonacion * 10 / 1000;
+                }
+            }
+            return montoDescuento;
         }
 
         #endregion

@@ -65,10 +65,11 @@ namespace Obligatorio1
 
         }
 
-        //private void PrecargaDonaciones()   //AgregarDonacionEconmica(fecha: date, centroRecepcion: Centros, valorDoncacion: float)
-        //                                    //AgregarDonacionProducto(fecha: date, centroRecepcion: Centros)
-        //{
-        //    //decimal valorDonacion, DateTime fecha, Centro centroRecepcion
+        //private void PrecargaDonaciones()   
+        //AgregarDonacionEconmica(fecha: date, centroRecepcion: Centros, valorDoncacion: float)                                    
+        //AgregarDonacionProducto(fecha: date, centroRecepcion: Centros)
+        //
+        //    
         //    AgregarDonacionEconmica(1345.20, 04 / 24 / 2019, "Soriano");
         //    AgregarDonacionEconmica(04 / 24 / 2019, "Montevideo", "Arenal Grabde 1729", 345.99);
         //    AgregarDonacionProducto(04 / 24 / 2019, "Soriano", "Cerro largo 1432");
@@ -134,22 +135,18 @@ namespace Obligatorio1
         public Centro BuscarCentro(string nombreCentro)
         {
             Centro elCentro = null;
-            bool centroEncontrado = false;
             int i = 0;
-            while (!centroEncontrado && i < centros.Count)
+            while (elCentro == null && i < centros.Count)
             {
                 if (centros[i].Nombre == nombreCentro)
                 {
                     elCentro = centros[i];
-                    centroEncontrado = true;
                 }
                 i++;
             }
             return elCentro;
         }
 
-
-        //LISTAR
 
          
 
