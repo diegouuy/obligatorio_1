@@ -42,7 +42,7 @@ namespace Obligatorio1
                         break;
                     //Alta de Producto
                     case 4:
-                        salir = true;
+                        AltaProducto(unS);
                         break;
                 }
             }
@@ -145,7 +145,14 @@ namespace Obligatorio1
         //Listar donaciones por fecha y Centro
         static void ListarDonacionesPorFecha(Sistema unS)
         {
+            Console.Clear();
+            
+        }
 
+        //Alta Producto
+        static void AltaProducto(Sistema unS)
+        {
+            Console.Clear();
         }
 
     }

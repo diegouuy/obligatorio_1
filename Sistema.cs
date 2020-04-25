@@ -47,9 +47,9 @@ namespace Obligatorio1
             donaciones = new List<Donacion>();
             productos = new List<Producto>();
             voluntarios = new List<Voluntario>();
-            PrecargaCentros();
-            //PrecargaDonaciones();
             PrecargaProductos();
+            PrecargaCentros();
+            PrecargaDonaciones();
             //PrecargaVoluntarios();
         }
 
@@ -65,17 +65,75 @@ namespace Obligatorio1
 
         }
 
-        //private void PrecargaDonaciones()   
-        //AgregarDonacionEconmica(fecha: date, centroRecepcion: Centros, valorDoncacion: float)                                    
-        //AgregarDonacionProducto(fecha: date, centroRecepcion: Centros)
-        //
-        //    
-        //    AgregarDonacionEconmica(1345.20, 04 / 24 / 2019, "Soriano");
-        //    AgregarDonacionEconmica(04 / 24 / 2019, "Montevideo", "Arenal Grabde 1729", 345.99);
-        //    AgregarDonacionProducto(04 / 24 / 2019, "Soriano", "Cerro largo 1432");
-        //    AgregarDonacionProducto(04 / 24 / 2019, "Montevideo", "Arenal Grabde 1729");
-        //    AgregarDonacionProducto(04 / 24 / 2019, "Paysandu", "Canelones 785");
-        //    AgregarDonacionProducto(04 / 24 / 2019, "Tacuarembo", "Mercedes 1324");
+        //List<Object> listaProd = new {producto = producto, cantidad = cantidad},
+
+        private void PrecargaDonaciones()
+        {
+            DateTime fechaNow = DateTime.Now;
+            //Donaciones economicas
+            string fechaDonacion = (fechaNow.AddDays(-250)).ToShortDateString();
+            AgregarDonacionEconmica(1345.20m, fechaDonacion, "Soriano");
+            fechaDonacion = (fechaNow.AddDays(-199)).ToShortDateString();
+            AgregarDonacionEconmica(2571.50m, fechaDonacion, "Montevideo");
+
+            //Donaciones de productos
+            //Lista y objeto auxiliar para agregar enviar en el metodo AgregarDonacionProducto
+            //Para cada donacion se completa una listaProductos
+            //Donacion A
+            List<Object> listaProductos = new List<object>();
+            Object productoDonado = new { producto = productos[1], cantidad = 2 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[1], cantidad = 1 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[1], cantidad = 3 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[1], cantidad = 2 };
+            listaProductos.Add(productoDonado);
+            fechaDonacion = (fechaNow.AddDays(-249)).ToShortDateString();
+            AgregarDonacionProducto(870.25m, fechaDonacion, "Soriano", listaProductos);
+            //Donacion B
+            listaProductos.Clear();
+            productoDonado = new { producto = productos[1], cantidad = 1 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[0], cantidad = 5 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[7], cantidad = 2 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[4], cantidad = 10 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[2], cantidad = 6 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[9], cantidad = 3 };
+            listaProductos.Add(productoDonado);
+            fechaDonacion = (fechaNow.AddDays(-154)).ToShortDateString();
+            AgregarDonacionProducto(1001.01m, fechaDonacion, "Montevideo", listaProductos);
+            //Donacion C
+            listaProductos.Clear();
+            productoDonado = new { producto = productos[2], cantidad = 2 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[8], cantidad = 10 };
+            listaProductos.Add(productoDonado);
+            fechaDonacion = (fechaNow.AddDays(-223)).ToShortDateString();
+            AgregarDonacionProducto(1999.99m, fechaDonacion, "Paysandu", listaProductos);
+            //Donacion D
+            listaProductos.Clear();
+            productoDonado = new { producto = productos[2], cantidad = 2 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[3], cantidad = 4 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[5], cantidad = 6 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[6], cantidad = 4 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[7], cantidad = 1 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[8], cantidad = 3 };
+            listaProductos.Add(productoDonado);
+            productoDonado = new { producto = productos[9], cantidad = 5 };
+            listaProductos.Add(productoDonado);
+            fechaDonacion = (fechaNow.AddDays(-174)).ToShortDateString();
+            AgregarDonacionProducto(2575, fechaDonacion, "Tacuarembo", listaProductos);
+        }
 
         private void PrecargaProductos()
         {
@@ -91,7 +149,6 @@ namespace Obligatorio1
             AltaProducto("Jabon liquido", 3, 110, 5);
         }
 
-
         //private void PrecargaVoluntarios() //MM/dd/yyyy //AgregarVoluntario(nombre: string, cedula: int, telefono: int, fechaNac: date)
         //{
         //    AgregarVoluntario("Edhys", 47479537, 098650104, 04/24/2019);
@@ -104,11 +161,6 @@ namespace Obligatorio1
         //    AgregarVoluntario("Gabriela", 47234509, 098123678, 04 / 24 / 2019);
         //    AgregarVoluntario("Luciana", 45678234, 098123098, 04 / 24 / 2019);
         //    AgregarVoluntario("Ornella", 23459876, 097543654, 04 / 24 / 2019);
-        //}
-
-        //public static List<Producto> ProductosDisponibles()
-        //{
-        //    return productos;
         //}
 
         public bool AgregarCentro(string nombre, string direccion)
@@ -124,11 +176,22 @@ namespace Obligatorio1
             return centroCreado;
         }
 
-        public void AgregarDonacionEconmica(decimal valorDonacion, DateTime fecha, string nombreCentro)
+        public bool AgregarDonacionEconmica(decimal valorDonacion, string fecha, string nombreCentro)
         {
+            bool donacionAgregada = false;
             Centro centroRecepcion = BuscarCentro(nombreCentro);
-            DonacionEcon unaDe = new DonacionEcon(valorDonacion, fecha, centroRecepcion);
+            DonacionEcon unaDe = new DonacionEcon(valorDonacion, fecha);
             donaciones.Add(unaDe);
+            return donacionAgregada;
+        }
+
+        public bool AgregarDonacionProducto(decimal valorDonacion, string fecha, string nombreCentro, List<Object> listaProductos)
+        {
+            bool donacionAgregada = false;
+            Centro centroRecepcion = BuscarCentro(nombreCentro);
+            DonacionProd unaDp = new DonacionProd(valorDonacion, fecha, listaProductos);
+            donaciones.Add(unaDp);
+            return donacionAgregada;
         }
 
         public void AltaProducto(string nombre, decimal peso, decimal precio, int tipo)
