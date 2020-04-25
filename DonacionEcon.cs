@@ -25,7 +25,7 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
-        public DonacionEcon(decimal montoDonacion, DateTime fecha, Centro centroRecepcion) : base(fecha, centroRecepcion)
+        public DonacionEcon(decimal montoDonacion, DateTime fecha, Centro centroRecepcion) : base(fecha)
         {
             decimal valorDesc = DescDonacionEcon(montoDonacion);
             this.valorDonacion = montoDonacion;
