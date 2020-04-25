@@ -38,7 +38,7 @@ namespace Obligatorio1
                         break;
                     //Mostrar donaciones por Centro dada una fecha 
                     case 3:
-                        salir = true;
+                        ListarDonacionesPorFecha(unS);
                         break;
                     //Alta de Producto
                     case 4:
@@ -89,7 +89,7 @@ namespace Obligatorio1
             Console.ReadKey();
         }
 
-        //
+        //Listar Voluntarios por Centro
         static void ListarVoluntariosEnCentro(Sistema unS)
         {
             int centroSeleccionado;
@@ -140,6 +140,12 @@ namespace Obligatorio1
             {
                 Console.WriteLine("No hay Centros creados en el sistema");
             }
+        }
+
+        //Listar donaciones por fecha y Centro
+        static void ListarDonacionesPorFecha(Sistema unS)
+        {
+
         }
 
     }

@@ -11,7 +11,7 @@ namespace Obligatorio1
         #region Atributos
         private decimal valorDonacion;
         private decimal valorDesc;
-        private List<Producto> prodDonados;
+        private List<Object> prodDonados;
         #endregion
 
         #region Propiedades
@@ -30,14 +30,15 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
-        public DonacionProd(decimal valorDonacion, DateTime fecha, List<Producto> listaProdDonados): base(fecha)
+        public DonacionProd(decimal valorDonacion, DateTime fecha, Producto producto, int cantidad): base(fecha)
         {
             decimal valorDesc = DescDonacionProd(valorDonacion);
             this.valorDonacion = valorDonacion;
             this.valorDesc = valorDesc;
-            prodDonados = listaProdDonados;
+            var unProductoDonado = new { producto = producto, cantidad = cantidad};
+            prodDonados.Add(unProductoDonado);
         }
-            
+
         public static decimal DescDonacionProd(decimal importeDonacion)
         {
             //Recibe el monto de la donacion economica, calcula el descuento y lo devuelve
