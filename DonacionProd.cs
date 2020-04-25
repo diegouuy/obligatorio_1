@@ -35,6 +35,7 @@ namespace Obligatorio1
             decimal valorDesc = DescDonacionProd(valorDonacion);
             this.valorDonacion = valorDonacion;
             this.valorDesc = valorDesc;
+            prodDonados = new List<Object>();
             var unProductoDonado = new { producto = producto, cantidad = cantidad};
             prodDonados.Add(unProductoDonado);
         }
