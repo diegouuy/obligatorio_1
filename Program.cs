@@ -36,9 +36,11 @@ namespace Obligatorio1
                     case 2:
                         ListarVoluntariosEnCentro(unS);
                         break;
+                    //Mostrar donaciones por Centro dada una fecha 
                     case 3:
                         salir = true;
                         break;
+                    //Alta de Producto
                     case 4:
                         salir = true;
                         break;
@@ -138,8 +140,6 @@ namespace Obligatorio1
             {
                 Console.WriteLine("No hay Centros creados en el sistema");
             }
-            //this is a test
-
         }
 
     }

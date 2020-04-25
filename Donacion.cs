@@ -12,7 +12,6 @@ namespace Obligatorio1
         private int id;
         private static int ultimoId;
         private DateTime fecha;
-        private Centro centroRecepcion;
         #endregion
 
         #region Propiedades
@@ -24,18 +23,13 @@ namespace Obligatorio1
         {
             get { return fecha; }
         }
-        public Centro CentroRecepcion
-        {
-            get { return centroRecepcion; }
-        }
         #endregion
 
         #region Metodos
-        public Donacion(DateTime fecha, Centro centroRecepcion)
+        public Donacion(DateTime fecha)
         {
             this.id = ++ultimoId;
             this.fecha = fecha;
-            this.centroRecepcion = centroRecepcion;
         }
 
         #endregion
