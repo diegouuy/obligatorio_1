@@ -25,11 +25,17 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
-        public DonacionEcon(decimal montoDonacion, DateTime fecha, Centro centroRecepcion) : base(fecha)
+        public DonacionEcon(decimal montoDonacion, string fecha) : base(fecha)
         {
             decimal valorDesc = DescDonacionEcon(montoDonacion);
             this.valorDonacion = montoDonacion;
             this.valorDesc = valorDesc;
+        }
+
+        public override string ToString()
+        {
+            string retorno = "Id donacion: " + Id + " - Fecha: " + Fecha + " - " + valorDonacion + " " + valorDesc;
+            return retorno;
         }
 
         private static decimal DescDonacionEcon(decimal montoDonacion)

@@ -30,14 +30,19 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
-        public DonacionProd(decimal valorDonacion, DateTime fecha, Producto producto, int cantidad): base(fecha)
+        public DonacionProd(decimal valorDonacion, string fecha, List<Object> productosDonados): base(fecha)
         {
             decimal valorDesc = DescDonacionProd(valorDonacion);
             this.valorDonacion = valorDonacion;
             this.valorDesc = valorDesc;
             prodDonados = new List<Object>();
-            var unProductoDonado = new { producto = producto, cantidad = cantidad};
-            prodDonados.Add(unProductoDonado);
+            prodDonados = productosDonados;
+        }
+
+        public override string ToString()
+        {
+            string retorno = "Id donacion: " + Id + " - Fecha: " + Fecha + " - " + valorDonacion + " " + valorDesc;
+            return retorno;
         }
 
         public static decimal DescDonacionProd(decimal importeDonacion)

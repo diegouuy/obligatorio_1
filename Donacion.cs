@@ -11,7 +11,7 @@ namespace Obligatorio1
         #region Atributos
         private int id;
         private static int ultimoId;
-        private DateTime fecha;
+        private string fecha;
         #endregion
 
         #region Propiedades
@@ -19,14 +19,14 @@ namespace Obligatorio1
         {
             get { return id; }
         }
-        public DateTime Fecha
+        public string Fecha
         {
             get { return fecha; }
         }
         #endregion
 
         #region Metodos
-        public Donacion(DateTime fecha)
+        public Donacion(string fecha)
         {
             this.id = ++ultimoId;
             this.fecha = fecha;
