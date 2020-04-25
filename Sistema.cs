@@ -111,10 +111,17 @@ namespace Obligatorio1
         //    return productos;
         //}
 
-        public void AgregarCentro(string nombre, string direccion)
+        public bool AgregarCentro(string nombre, string direccion)
         {
-            Centro unC = new Centro(nombre, direccion);
-            centros.Add(unC);
+            bool centroCreado = false;
+            //Validaciones nombre Centro
+            if (NombreCentroValido(nombre) && !CentroExistente(nombre) && direccion is string)
+            {
+                Centro unC = new Centro(nombre, direccion);
+                centros.Add(unC);
+                centroCreado = true;
+            }
+            return centroCreado;
         }
 
         public void AgregarDonacionEconmica(decimal valorDonacion, DateTime fecha, string nombreCentro)
@@ -147,6 +154,27 @@ namespace Obligatorio1
             return elCentro;
         }
 
+        //VALIDACIONES
+        //Centro
+        public bool NombreCentroValido(string nombreCentro)
+        {
+            bool valido = false;
+            if(nombreCentro is string && nombreCentro != "" && nombreCentro != " ")
+            {
+                valido = true;
+            }
+            return valido;
+        }
+
+        public bool CentroExistente(string nombreCentro)
+        {
+            bool existe = false;
+            if (BuscarCentro(nombreCentro) != null)
+            {
+                existe = true;
+            }
+            return existe;
+        }
 
          
 
