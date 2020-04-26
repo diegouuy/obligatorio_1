@@ -149,20 +149,28 @@ namespace Obligatorio1
             AltaProducto("Jabon liquido", 3, 110, 5);
         }
 
-        //private void PrecargaVoluntarios() //MM/dd/yyyy //AgregarVoluntario(nombre: string, cedula: int, telefono: int, fechaNac: date)
-        //{
-        //    AgregarVoluntario("Edhys", 47479537, 098650104, 04/24/2019);
-        //    AgregarVoluntario("Diego", 38548711, 099345761, 04 / 24 / 2019);
-        //    AgregarVoluntario("Juan", 34598123, 098549123, 04 / 24 / 2019);
-        //    AgregarVoluntario("Perez", 47632567, 099876543, 04 / 24 / 2019);
-        //    AgregarVoluntario("Maxi", 32198754, 099123765, 04 / 24 / 2019);
-        //    AgregarVoluntario("Sofia", 36745612, 098345612, 04 / 24 / 2019);
-        //    AgregarVoluntario("Carolina", 34509847, 098435678, 04 / 24 / 2019);
-        //    AgregarVoluntario("Gabriela", 47234509, 098123678, 04 / 24 / 2019);
-        //    AgregarVoluntario("Luciana", 45678234, 098123098, 04 / 24 / 2019);
-        //    AgregarVoluntario("Ornella", 23459876, 097543654, 04 / 24 / 2019);
-        //}
-
+        private void PrecargaVoluntarios() //MM/dd/yyyy //AgregarVoluntario(nombre: string, cedula: int, telefono: int, fechaNac: date)
+        {
+            AgregarVoluntario("Edhys", 47479537, 098650104, 04/24/2019);
+            AgregarVoluntario("Diego", 38548711, 099345761, 04 / 24 / 2019);
+            AgregarVoluntario("Juan", 34598123, 098549123, 04 / 24 / 2019);
+            AgregarVoluntario("Perez", 47632567, 099876543, 04 / 24 / 2019);
+            AgregarVoluntario("Maxi", 32198754, 099123765, 04 / 24 / 2019);
+            AgregarVoluntario("Sofia", 36745612, 098345612, 04 / 24 / 2019);
+            AgregarVoluntario("Carolina", 34509847, 098435678, 04 / 24 / 2019);
+            AgregarVoluntario("Gabriela", 47234509, 098123678, 04 / 24 / 2019);
+            AgregarVoluntario("Luciana", 45678234, 098123098, 04 / 24 / 2019);
+            AgregarVoluntario("Ornella", 23459876, 097543654, 04 / 24 / 2019);
+        }
+        public bool AgregarVoluntario(string nombre, int cedula, int telefono, DateTime fechaNac)
+        {
+            //valido dato no vacios 
+            if (nombre != "" && cedula != "" && telefono != "" && fechaNac != "")
+            {
+            AgregarVoluntario unV = new Voluntario(nombre, cedula, telefono, fechaNac);
+            Voluntario.Add(unV);
+            }
+        }
         public bool AgregarCentro(string nombre, string direccion)
         {
             bool centroCreado = false;
