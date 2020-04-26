@@ -165,7 +165,7 @@ namespace Obligatorio1
         public bool AgregarVoluntario(string nombre, int cedula, int telefono, DateTime fechaNac)
         {
             //valido dato no vacios 
-            if (nombre != "" && cedula != "" && telefono != "" && fechaNac != "")
+            if (nombre !="" && cedula !="" && telefono !="" && fechaNac !="")
             {
             AgregarVoluntario unV = new Voluntario(nombre, cedula, telefono, fechaNac);
             Voluntario.Add(unV);
@@ -227,6 +227,25 @@ namespace Obligatorio1
 
         //VALIDACIONES
         //Centro
+        public bool CiValida(string cedula)
+        {
+            bool valido = false;
+            if (cedula == "")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                mensaje = "\n" + "La cedula es obligatoria";
+            }
+             if (cedula.Length != 8)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                mensaje = mensaje + "\n" + "La cedula debe tener 8 numeros obligatoriamente\n";
+            }
+            if (cedula.Length = 8)
+            {
+                valido= true;
+            }    
+            return cedula;
+        }
         public bool NombreCentroValido(string nombreCentro)
         {
             bool valido = false;

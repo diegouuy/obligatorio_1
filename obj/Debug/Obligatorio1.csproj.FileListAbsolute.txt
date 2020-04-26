@@ -12,3 +12,7 @@ C:\Users\diego\github\obligatorio_1\obj\Debug\Obligatorio1.csprojAssemblyReferen
 C:\Users\diego\github\obligatorio_1\obj\Debug\Obligatorio1.csproj.CoreCompileInputs.cache
 C:\Users\diego\github\obligatorio_1\obj\Debug\Obligatorio1.exe
 C:\Users\diego\github\obligatorio_1\obj\Debug\Obligatorio1.pdb
+C:\Users\edhys\Source\Repos\diegouuy\obligatorio_1\obj\Debug\Obligatorio1.csprojAssemblyReference.cache
+C:\Users\edhys\Source\Repos\diegouuy\obligatorio_1\obj\Debug\Obligatorio1.csproj.CoreCompileInputs.cache
+C:\Users\edhys\Source\Repos\diegouuy\obligatorio_1\obj\Debug\Obligatorio1.exe
+C:\Users\edhys\Source\Repos\diegouuy\obligatorio_1\obj\Debug\Obligatorio1.pdb
