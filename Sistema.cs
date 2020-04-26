@@ -226,10 +226,10 @@ namespace Obligatorio1
         }
 
         //VALIDACIONES
-        //Centro
-        public bool CiValida(string cedula)
+       
+        public CiValida(string cedula)
         {
-            bool valido = false;
+            int laCedula = null;
             if (cedula == "")
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -246,6 +246,22 @@ namespace Obligatorio1
             }    
             return cedula;
         }
+        public TelValido(string telefono)
+        {
+            int elTelefono = null;
+            telefono = Console.ReadLine();
+            if (telefono == "")
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                mensaje = "\n" + "El telefono es obligatorio";
+            }
+            else if (telefono.Length < 8 || telefono.Length > 10)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                mensaje = mensaje + "\n" + "El telefono debe terner 8 o 9  numeros obligatoriamente\n";
+            }
+            return telefono;
+        }    
         public bool NombreCentroValido(string nombreCentro)
         {
             bool valido = false;
