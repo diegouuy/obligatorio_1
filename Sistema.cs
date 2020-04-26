@@ -65,8 +65,6 @@ namespace Obligatorio1
 
         }
 
-        //List<Object> listaProd = new {producto = producto, cantidad = cantidad},
-
         private void PrecargaDonaciones()
         {
             DateTime fechaNow = DateTime.Now;
@@ -165,7 +163,7 @@ namespace Obligatorio1
         public bool AgregarVoluntario(string nombre, int cedula, int telefono, DateTime fechaNac)
         {
             //valido dato no vacios 
-            if (nombre !="" && cedula !="" && telefono !="" && fechaNac !="")
+            if (nombre != "" && CiValida(cedula) && TelValido(telefono) && fechaNac !="")
             {
             AgregarVoluntario unV = new Voluntario(nombre, cedula, telefono, fechaNac);
             Voluntario.Add(unV);
@@ -227,7 +225,7 @@ namespace Obligatorio1
 
         //VALIDACIONES
        
-        public CiValida(string cedula)
+        public Voluntario CiValida(string cedula)
         {
             int laCedula = null;
             if (cedula == "")
@@ -246,7 +244,7 @@ namespace Obligatorio1
             }    
             return cedula;
         }
-        public TelValido(string telefono)
+        public Voluntario TelValido(string telefono)
         {
             int elTelefono = null;
             telefono = Console.ReadLine();
