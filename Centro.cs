@@ -33,7 +33,7 @@ namespace Obligatorio1
             get { return voluntarios; }
         }
 
-        public List<Donacion> Donacion
+        public List<Donacion> Donaciones
         {
             get { return donaciones; }
         }

@@ -116,7 +116,7 @@ namespace Obligatorio1
                         {
                             Console.Clear();
                             Console.WriteLine("Mostrando Voluntarios del centro " + unS.Centros[centroSeleccionado].Nombre);
-                            foreach(Voluntario unV in listaVoluntarios)
+                            foreach (Voluntario unV in listaVoluntarios)
                             {
                                 Console.WriteLine(unV);
                             }
@@ -146,13 +146,61 @@ namespace Obligatorio1
         static void ListarDonacionesPorFecha(Sistema unS)
         {
             Console.Clear();
-            
+            bool fechaValida = false;
+            DateTime fechaIngresada = new DateTime();
+            string datoIngresado = "";
+            //Pide el ingreso de una fecha hasta que se ingrese en el formato valido o se ingrese 0 para salir
+            while (!fechaValida && datoIngresado != "0")
+            {
+                Console.Clear();
+                Console.WriteLine("Listado de donaciones por fecha");
+                Console.WriteLine("Ingrese la fecha deseada (en formato aaaa/mm/dd) o ingrese 0 para volver");
+                datoIngresado = Console.ReadLine();
+                fechaValida = DateTime.TryParse(datoIngresado, out fechaIngresada);
+            }
+            //Si se ingreso una fecha valida se sigue con los pasos para buscar donaciones en esa fecha
+            //Si se ingreso "0" se finaliza el algoritmo
+            if (fechaValida)
+            {
+                Console.Clear();
+                Console.WriteLine("Donaciones por centro en el día " + fechaIngresada.ToShortDateString() + "\n");
+                if (unS.Donaciones.Count != 0)
+                {
+                    foreach (Centro unC in unS.Centros)
+                    {
+                        int cantDonaciones = 0;
+                        foreach(Donacion unaD in unC.Donaciones)
+                        {
+                            if (unaD.Fecha == fechaIngresada)
+                            {
+                                cantDonaciones++;
+                            }
+                        }
+                        if (cantDonaciones > 0)
+                        {
+                            Console.WriteLine("- Centro " + unC.Nombre);
+                            Console.WriteLine("  " + cantDonaciones + "donaciones");
+                        }
+                        else
+                        {
+                            Console.WriteLine("- Centro " + unC.Nombre);
+                            Console.WriteLine("  No se registraron donaciones en la fecha ingresada");
+                        }
+                    }
+                    Console.WriteLine("\nPresione cualquier tecla para volver al menu anterior");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    Console.WriteLine("No hay donaciones registradas. Presione cualquier tecla para continuar.");
+                    Console.ReadKey();
+                }
+            }
         }
 
         //Alta Producto
         static void AltaProducto(Sistema unS)
         {
-            Console.Clear();
         }
 
     }
