@@ -14,7 +14,6 @@ namespace Obligatorio1
             Sistema unS = new Sistema();
 
             //MENU DE SELECCION
-
             int opcion = 0;
             bool salir = false;
             while (!salir)
@@ -179,7 +178,7 @@ namespace Obligatorio1
                         if (cantDonaciones > 0)
                         {
                             Console.WriteLine("- Centro " + unC.Nombre);
-                            Console.WriteLine("  " + cantDonaciones + "donaciones");
+                            Console.WriteLine("  Cantidad de donaciones: " + cantDonaciones );
                         }
                         else
                         {
@@ -201,6 +200,7 @@ namespace Obligatorio1
         //Alta Producto
         static void AltaProducto(Sistema unS)
         {
+
         }
 
     }

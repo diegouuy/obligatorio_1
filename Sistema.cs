@@ -69,7 +69,7 @@ namespace Obligatorio1
 
         private void PrecargaDonaciones()
         {
-            DateTime fechaDonacionA = new DateTime(2019, 09, 05);
+            DateTime fechaDonacionA = new DateTime(2019, 10, 04);
             AgregarDonacionEconmica(1345.20m, fechaDonacionA, "Soriano");
             DateTime fechaDonacionB = new DateTime(2019, 09, 22);
             AgregarDonacionEconmica(2571.50m, fechaDonacionB, "Montevideo");
@@ -103,7 +103,7 @@ namespace Obligatorio1
             listaProductos.Add(productoDonado);
             productoDonado = new { producto = productos[9], cantidad = 3 };
             listaProductos.Add(productoDonado);
-            DateTime fechaDonacionD = new DateTime(2019, 10, 07);
+            DateTime fechaDonacionD = new DateTime(2019, 10, 04);
             AgregarDonacionProducto(1001.01m, fechaDonacionD, "Montevideo", listaProductos);
             //Donacion C
             listaProductos.Clear();
@@ -112,7 +112,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[8], cantidad = 10 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionE = new DateTime(2019, 11, 12);
-            AgregarDonacionProducto(1999.99m, fechaDonacionE, "Paysandu", listaProductos);
+            AgregarDonacionProducto(1999.99m, fechaDonacionE, "Montevideo", listaProductos);
             //Donacion D
             listaProductos.Clear();
             productoDonado = new { producto = productos[2], cantidad = 2 };
@@ -129,7 +129,7 @@ namespace Obligatorio1
             listaProductos.Add(productoDonado);
             productoDonado = new { producto = productos[9], cantidad = 5 };
             listaProductos.Add(productoDonado);
-            DateTime fechaDonacionF = new DateTime(2019, 11, 14);
+            DateTime fechaDonacionF = new DateTime(2019, 10, 04);
             AgregarDonacionProducto(2575, fechaDonacionF, "Tacuarembo", listaProductos);
         }
 
@@ -147,28 +147,28 @@ namespace Obligatorio1
             AltaProducto("Jabon liquido", 3, 110, 5);
         }
 
-        private void PrecargaVoluntarios() //MM/dd/yyyy //AgregarVoluntario(nombre: string, cedula: int, telefono: int, fechaNac: date)
-        {
-            AgregarVoluntario("Edhys", 47479537, 098650104, 04/24/2019);
-            AgregarVoluntario("Diego", 38548711, 099345761, 04 / 24 / 2019);
-            AgregarVoluntario("Juan", 34598123, 098549123, 04 / 24 / 2019);
-            AgregarVoluntario("Perez", 47632567, 099876543, 04 / 24 / 2019);
-            AgregarVoluntario("Maxi", 32198754, 099123765, 04 / 24 / 2019);
-            AgregarVoluntario("Sofia", 36745612, 098345612, 04 / 24 / 2019);
-            AgregarVoluntario("Carolina", 34509847, 098435678, 04 / 24 / 2019);
-            AgregarVoluntario("Gabriela", 47234509, 098123678, 04 / 24 / 2019);
-            AgregarVoluntario("Luciana", 45678234, 098123098, 04 / 24 / 2019);
-            AgregarVoluntario("Ornella", 23459876, 097543654, 04 / 24 / 2019);
-        }
-        public bool AgregarVoluntario(string nombre, int cedula, int telefono, DateTime fechaNac)
-        {
-            //valido dato no vacios 
-            if (nombre != "" && cedula != "" && telefono != "" && fechaNac != "")
-            {
-            AgregarVoluntario unV = new Voluntario(nombre, cedula, telefono, fechaNac);
-            Voluntario.Add(unV);
-            }
-        }
+        //private void PrecargaVoluntarios() //MM/dd/yyyy //AgregarVoluntario(nombre: string, cedula: int, telefono: int, fechaNac: date)
+        //{
+        //    AgregarVoluntario("Edhys", 47479537, 098650104, 04/24/2019);
+        //    AgregarVoluntario("Diego", 38548711, 099345761, 04 / 24 / 2019);
+        //    AgregarVoluntario("Juan", 34598123, 098549123, 04 / 24 / 2019);
+        //    AgregarVoluntario("Perez", 47632567, 099876543, 04 / 24 / 2019);
+        //    AgregarVoluntario("Maxi", 32198754, 099123765, 04 / 24 / 2019);
+        //    AgregarVoluntario("Sofia", 36745612, 098345612, 04 / 24 / 2019);
+        //    AgregarVoluntario("Carolina", 34509847, 098435678, 04 / 24 / 2019);
+        //    AgregarVoluntario("Gabriela", 47234509, 098123678, 04 / 24 / 2019);
+        //    AgregarVoluntario("Luciana", 45678234, 098123098, 04 / 24 / 2019);
+        //    AgregarVoluntario("Ornella", 23459876, 097543654, 04 / 24 / 2019);
+        //}
+        //public bool AgregarVoluntario(string nombre, int cedula, int telefono, DateTime fechaNac)
+        //{
+        //    //valido dato no vacios 
+        //    if (nombre != "" && cedula != "" && telefono != "" && fechaNac != "")
+        //    {
+        //    AgregarVoluntario unV = new Voluntario(nombre, cedula, telefono, fechaNac);
+        //    Voluntario.Add(unV);
+        //    }
+        //}
         public bool AgregarCentro(string nombre, string direccion)
         {
             bool centroCreado = false;
@@ -185,19 +185,37 @@ namespace Obligatorio1
         public bool AgregarDonacionEconmica(decimal valorDonacion, DateTime fecha, string nombreCentro)
         {
             bool donacionAgregada = false;
-            Centro centroRecepcion = BuscarCentro(nombreCentro);
             DonacionEcon unaDe = new DonacionEcon(valorDonacion, fecha);
-            donaciones.Add(unaDe);
+            if (AgregarDonacionACentro(unaDe, nombreCentro))
+            {
+                donaciones.Add(unaDe);
+                donacionAgregada = true;
+            }
             return donacionAgregada;
         }
 
         public bool AgregarDonacionProducto(decimal valorDonacion, DateTime fecha, string nombreCentro, List<Object> listaProductos)
         {
             bool donacionAgregada = false;
-            Centro centroRecepcion = BuscarCentro(nombreCentro);
             DonacionProd unaDp = new DonacionProd(valorDonacion, fecha, listaProductos);
-            donaciones.Add(unaDp);
+            if (AgregarDonacionACentro(unaDp, nombreCentro))
+            {
+                donaciones.Add(unaDp);
+                donacionAgregada = true;
+            }
             return donacionAgregada;
+        }
+
+        public bool AgregarDonacionACentro(Donacion unaD, string nombreCentro)
+        {
+            bool retorno = false;
+            Centro elCentro = BuscarCentro(nombreCentro);
+            if (elCentro != null)
+            {
+                elCentro.Donaciones.Add(unaD);
+                retorno = true;
+            }
+            return retorno;
         }
 
         public void AltaProducto(string nombre, decimal peso, decimal precio, int tipo)
