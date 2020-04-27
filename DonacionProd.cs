@@ -30,7 +30,7 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
-        public DonacionProd(decimal valorDonacion, string fecha, List<Object> productosDonados): base(fecha)
+        public DonacionProd(decimal valorDonacion, DateTime fecha, List<Object> productosDonados): base(fecha)
         {
             decimal valorDesc = DescDonacionProd(valorDonacion);
             this.valorDonacion = valorDonacion;
