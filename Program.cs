@@ -41,7 +41,7 @@ namespace Obligatorio1
                         break;
                     //Alta de Producto
                     case 4:
-                        AltaProducto(unS);
+                        IngresarProductoNuevo(unS);
                         break;
                 }
             }
@@ -72,8 +72,7 @@ namespace Obligatorio1
             Console.Clear();
             if (unS.Productos.Count > 0)
             {
-                Console.WriteLine("Productos disponibles para donar\n");
-                Console.WriteLine("ID - Nombre - Peso por unidad - Precio por unidad - Tipo\n");
+                Console.WriteLine("PRODUCTOS DISPONIBLES PARA DONACION\n\n");
                 foreach (Producto unP in unS.Productos)
                 {
                     Console.WriteLine(unP);
@@ -96,7 +95,7 @@ namespace Obligatorio1
             int numeroDeCentros = unS.Centros.Count;
             if (numeroDeCentros >= 1)
             {
-                string mensaje = "Ingrese un numero de la lista para seleccionar el Centro de Recepción o ingrese 0 para volver al menu principal\n";
+                string mensaje = "LISTADO DE VOLUNTARIOS POR CENTRO\n\nIngrese un numero de la lista para seleccionar el Centro de Recepción o ingrese 0 para volver al menu principal\n";
                 int numeroOpcion = 0;
                 foreach (Centro unC in unS.Centros)
                 {
@@ -109,12 +108,13 @@ namespace Obligatorio1
                     if (centroSeleccionado != 0)
                     {
                         --centroSeleccionado;
-                        listaVoluntarios = unS.Centros[centroSeleccionado].Voluntarios;
+                        string nombreCentro = unS.ObtenerNombreCentro(unS, centroSeleccionado);
+                        listaVoluntarios = unS.ListaVoluntariosEnCentro(unS, centroSeleccionado);//unS.Centros[centroSeleccionado].Voluntarios;
                         int cantidadVoluntarios = listaVoluntarios.Count;
                         if (cantidadVoluntarios >= 1)
                         {
                             Console.Clear();
-                            Console.WriteLine("Mostrando Voluntarios del centro " + unS.Centros[centroSeleccionado].Nombre);
+                            Console.WriteLine("Mostrando Voluntarios del centro " + nombreCentro);
                             foreach (Voluntario unV in listaVoluntarios)
                             {
                                 Console.WriteLine(unV);
@@ -125,7 +125,7 @@ namespace Obligatorio1
                         else
                         {
                             Console.Clear();
-                            Console.WriteLine("El Centro " + unS.Centros[centroSeleccionado].Nombre + " no tiene Voluntarios asignados. Presione cualquier tecla para volver al menu anterior.");
+                            Console.WriteLine("El Centro " + nombreCentro + " no tiene Voluntarios asignados. Presione cualquier tecla para volver al menu anterior.");
                             Console.ReadKey();
                         }
                     }
@@ -152,7 +152,7 @@ namespace Obligatorio1
             while (!fechaValida && datoIngresado != "0")
             {
                 Console.Clear();
-                Console.WriteLine("Listado de donaciones por fecha");
+                Console.WriteLine("LISTADO DE DONACIONES POR FECHA\n");
                 Console.WriteLine("Ingrese la fecha deseada (en formato aaaa/mm/dd) o ingrese 0 para volver");
                 datoIngresado = Console.ReadLine();
                 fechaValida = DateTime.TryParse(datoIngresado, out fechaIngresada);
@@ -165,26 +165,11 @@ namespace Obligatorio1
                 Console.WriteLine("Donaciones por centro en el día " + fechaIngresada.ToShortDateString() + "\n");
                 if (unS.Donaciones.Count != 0)
                 {
-                    foreach (Centro unC in unS.Centros)
+                    //Busco donaciones en esa fecha. Se recibe una lista para recorrerla y imprimir en pantalla.
+                    List<string> listaCantDonaciones = unS.DonacionesPorFechaEnCentro(fechaIngresada);
+                    foreach (string s in listaCantDonaciones)
                     {
-                        int cantDonaciones = 0;
-                        foreach(Donacion unaD in unC.Donaciones)
-                        {
-                            if (unaD.Fecha == fechaIngresada)
-                            {
-                                cantDonaciones++;
-                            }
-                        }
-                        if (cantDonaciones > 0)
-                        {
-                            Console.WriteLine("- Centro " + unC.Nombre);
-                            Console.WriteLine("  Cantidad de donaciones: " + cantDonaciones );
-                        }
-                        else
-                        {
-                            Console.WriteLine("- Centro " + unC.Nombre);
-                            Console.WriteLine("  No se registraron donaciones en la fecha ingresada");
-                        }
+                        Console.WriteLine(s);
                     }
                     Console.WriteLine("\nPresione cualquier tecla para volver al menu anterior");
                     Console.ReadKey();
@@ -198,9 +183,52 @@ namespace Obligatorio1
         }
 
         //Alta Producto
-        static void AltaProducto(Sistema unS)
+        static void IngresarProductoNuevo(Sistema unS)
         {
-
+            Console.Clear();
+            Console.WriteLine("ALTA DE PRODUCTO\n");
+            Console.WriteLine("Ingrese NOMBRE del producto");
+            string nombreIngresado = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("Nombre ingresado: " + nombreIngresado + "\n");
+            Console.WriteLine("Ingrese el PESO del producto");
+            decimal pesoIngresado;
+            bool pesoValido = Decimal.TryParse(Console.ReadLine(), out pesoIngresado);
+            while (!pesoValido)
+            {
+                Console.WriteLine("El peso ingresado no es válido. Ingrese un peso en valores numéricos mayores a 0.");
+                pesoValido = Decimal.TryParse(Console.ReadLine(), out pesoIngresado);
+            }
+            Console.Clear();
+            Console.WriteLine("Peso ingresado: " + pesoIngresado + "\n");
+            Console.WriteLine("Ingrese el PRECIO del producto");
+            decimal precioIngresado;
+            bool precioValido = Decimal.TryParse(Console.ReadLine(), out precioIngresado);
+            while (!precioValido)
+            {
+                Console.WriteLine("El peso ingresado no es válido. Ingrese un peso en valores numéricos mayores a 0.");
+                precioValido = Decimal.TryParse(Console.ReadLine(), out precioIngresado);
+            }
+            Console.Clear();
+            string pedirTipo = "Precio ingresado: " + precioIngresado + "\n\nIngrese el TIPO de producto\n1 - Bebida // 2 - Perecedero // 3 - No Perecedero // 4 - Limpieza // 5 - Higiene";
+            int tipoIngresado = SolicitarNumero(1, 5, pedirTipo);
+            string nombreTipo = unS.SolicitarTipoProd(unS, tipoIngresado);
+            Console.Clear();
+            string mensajeTipo = "Tipo ingresado: " + tipoIngresado + " - " + nombreTipo + "\n\n";
+            Console.WriteLine(mensajeTipo);
+            Console.WriteLine("Presione cualquier tecla para finalizar");
+            Console.ReadKey();
+            Console.Clear();
+            Producto unP = unS.AltaProducto(nombreIngresado, pesoIngresado, precioIngresado, tipoIngresado);
+            if (unP != null)
+            {
+                Console.WriteLine("Producto ingresado con éxito\n\n" + unP + "\n\nPresione cualquier tecal para volver al menu principal\n");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Error. No se pudo ingresar el producto. Verifique los datos ingresados.\nPresione cualquier tecal para volver al menu principal");
+            }
         }
 
     }

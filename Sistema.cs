@@ -137,7 +137,8 @@ namespace Obligatorio1
         {
             AltaProducto("Agua nativa", 2, 39.4m, 1);
             AltaProducto("Agua salus", 2.5m, 50, 1);
-            AltaProducto("Arroz", 5, 120, 3);
+            AltaProducto("Arroz", 5, 120, 3); //Esta precarga funciona
+            AltaProducto("Arroz", 8, 100, 4); //Esta precarga falla porque el nombre se repite
             AltaProducto("Fideos", 5, 80, 3);
             AltaProducto("Pan", 0.5m, 50, 2);
             AltaProducto("Galletas", 0.5m, 130, 2);
@@ -173,7 +174,7 @@ namespace Obligatorio1
         {
             bool centroCreado = false;
             //Validaciones nombre Centro
-            if (NombreCentroValido(nombre) && !CentroExistente(nombre) && direccion is string)
+            if (Centro.NombreCentroValido(nombre) && !CentroExistente(nombre) && direccion is string)
             {
                 Centro unC = new Centro(nombre, direccion);
                 centros.Add(unC);
@@ -218,10 +219,34 @@ namespace Obligatorio1
             return retorno;
         }
 
-        public void AltaProducto(string nombre, decimal peso, decimal precio, int tipo)
+        public Producto AltaProducto(string nombre, decimal peso, decimal precio, int tipo)
         {
-            Producto unP = new Producto(nombre, peso, precio, tipo);
-            productos.Add(unP);
+            Producto retorno = null;
+            if (ValidacionesProductoNuevo(nombre, peso, precio, tipo) && !ProductoExistente(nombre))
+            {
+                Producto unP = new Producto(nombre, peso, precio, tipo);
+                productos.Add(unP);
+                retorno = unP;
+            }
+            return retorno;
+        }
+
+        public static bool ValidacionesProductoNuevo(string nombre, decimal peso, decimal precio, int tipo)
+        {
+            return Producto.ValidarNombre(nombre) && Producto.ValidarPeso(peso) && Producto.ValidarPrecio(precio) && Producto.ValidarTipo(tipo);
+        }
+
+        public bool ProductoExistente(string nombre)
+        {
+            bool retorno = false;
+            foreach(Producto unP in productos)
+            {
+                if(unP.Nombre == nombre)
+                {
+                    retorno = true;
+                }
+            }
+            return retorno;
         }
 
         //BUSQUEDAS
@@ -241,16 +266,41 @@ namespace Obligatorio1
             return elCentro;
         }
 
-        //VALIDACIONES
-        //Centro
-        public bool NombreCentroValido(string nombreCentro)
+        public string ObtenerNombreCentro(Sistema unS, int posicionCentro) //Posicion centro, es el numero de posicion en la lista centros
         {
-            bool valido = false;
-            if(nombreCentro is string && nombreCentro != "" && nombreCentro != " ")
+            return unS.centros[posicionCentro].Nombre;
+        }
+
+        public List<Voluntario> ListaVoluntariosEnCentro(Sistema unS, int posicionCentro) //Posicion centro, es el numero de posicion en la lista centros
+        {
+            List<Voluntario> listaVoluntarios = unS.centros[posicionCentro].Voluntarios;
+            return listaVoluntarios;
+        }
+
+        public List<string> DonacionesPorFechaEnCentro(DateTime fecha)
+        {
+            List<string> aux = new List<string>();
+            int cantDonaciones;
+            foreach (Centro unC in centros)
             {
-                valido = true;
+                cantDonaciones = 0;
+                foreach (Donacion unaD in unC.Donaciones)
+                {
+                    if (unaD.Fecha == fecha)
+                    {
+                        cantDonaciones++;
+                    }
+                }
+                string donacionesUnCentro = "- Centro " + unC.Nombre + ": " + cantDonaciones + " donaciones";
+                aux.Add(donacionesUnCentro);
             }
-            return valido;
+            return aux;
+        }
+
+        public string SolicitarTipoProd(Sistema unS, int numTipo)
+        {
+            string tipoEnum = Enum.GetName(typeof(Producto.TipoProducto), numTipo);
+            return tipoEnum;
         }
 
         public bool CentroExistente(string nombreCentro)

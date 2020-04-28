@@ -18,11 +18,11 @@ namespace Obligatorio1
 
         public enum TipoProducto
         {
-            bebida = 1,
-            perecedero = 2,
-            noPerecedero = 3,
-            limpieza = 4,
-            higiene = 5
+            Bebida = 1,
+            Perecedero = 2,
+            No_Perecedero = 3,
+            Limpieza = 4,
+            Higiene = 5
         }
         #endregion
 
@@ -64,7 +64,46 @@ namespace Obligatorio1
 
         public override string ToString()
         {
-            string retorno = id + " - " + nombre + " - " + peso + " - " + precio + " - " + tipo;
+            string retorno = "- " + nombre + ":\n  * Id: " + id + "\n  * Peso: " + peso + "\n  * Precio: $" + precio + "\n  * Tipo: " + tipo;
+            return retorno;
+        }
+
+        public static bool ValidarNombre(string nombre)
+        {
+            bool nombreValido = false;
+            if (nombre is string && nombre != "" && nombre != " ")
+            {
+                nombreValido = true;
+            }
+            return nombreValido;
+        }
+
+        public static bool ValidarPeso(decimal peso)
+        {
+            bool pesoValido = false;
+            if(peso > 0)
+            {
+                pesoValido = true;
+            }
+            return pesoValido;
+        }
+        public static bool ValidarPrecio(decimal precio)
+        {
+            bool precioValido = false;
+            if(precio > 0)
+            {
+                precioValido = true;
+            }
+            return precioValido;
+        }
+
+        public static bool ValidarTipo(int tipo)
+        {
+            bool retorno = false;
+            if (tipo >= 1 && tipo <= 5)
+            {
+                retorno = true;
+            }
             return retorno;
         }
 

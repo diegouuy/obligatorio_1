@@ -51,7 +51,18 @@ namespace Obligatorio1
             this.direccion = direccion;
         }
 
-        
+        public static bool NombreCentroValido(string nombreCentro)
+        {
+            bool valido = false;
+            if (nombreCentro is string && nombreCentro != "" && nombreCentro != " ")
+            {
+                valido = true;
+            }
+            return valido;
+        }
+
+
+
         #endregion
 
     }
