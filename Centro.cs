@@ -54,12 +54,17 @@ namespace Obligatorio1
         public static bool NombreCentroValido(string nombreCentro)
         {
             bool valido = false;
-            if (nombreCentro is string && nombreCentro != "" && nombreCentro != " ")
+            if (nombreCentro.Length > 2 && nombreCentro != "    ")
             {
                 valido = true;
             }
             return valido;
         }
+        public static bool DireccionValida(string direccionCentro)
+        {
+            return direccionCentro.Length > 4 && direccionCentro != "     ";
+        }
+
         #endregion
 
     }

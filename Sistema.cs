@@ -59,6 +59,7 @@ namespace Obligatorio1
         {
             AgregarCentro("Soriano", "Cerro largo 1432");
             AgregarCentro("Mercedes", "Misiones 298");
+            AgregarCentro("Mercedes", "Misiones 298");              //Esta precarga falla porque ya existe un centro con el mismo nombre
             AgregarCentro("Montevideo", "Arenal Grabde 1729");
             AgregarCentro("Paysandu", "Canelones 785");
             AgregarCentro("Tacuarembo", "Mercedes 1324");
@@ -231,7 +232,7 @@ namespace Obligatorio1
         {
             bool centroCreado = false;
             //Validaciones nombre Centro
-            if (Centro.NombreCentroValido(nombre) && !CentroExistente(nombre) && direccion is string)
+            if (Centro.NombreCentroValido(nombre) && !CentroExistente(nombre) && direccion is string && Centro.DireccionValida(direccion))
             {
                 Centro unC = new Centro(nombre, direccion);
                 centros.Add(unC);
