@@ -60,9 +60,6 @@ namespace Obligatorio1
             }
             return valido;
         }
-
-
-
         #endregion
 
     }

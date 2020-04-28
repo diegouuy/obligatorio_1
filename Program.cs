@@ -212,7 +212,7 @@ namespace Obligatorio1
             Console.Clear();
             string pedirTipo = "Precio ingresado: " + precioIngresado + "\n\nIngrese el TIPO de producto\n1 - Bebida // 2 - Perecedero // 3 - No Perecedero // 4 - Limpieza // 5 - Higiene";
             int tipoIngresado = SolicitarNumero(1, 5, pedirTipo);
-            string nombreTipo = unS.SolicitarTipoProd(unS, tipoIngresado);
+            string nombreTipo = unS.SolicitarTipoProd(tipoIngresado);
             Console.Clear();
             string mensajeTipo = "Tipo ingresado: " + tipoIngresado + " - " + nombreTipo + "\n\n";
             Console.WriteLine(mensajeTipo);

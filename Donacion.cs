@@ -31,7 +31,6 @@ namespace Obligatorio1
             this.id = ++ultimoId;
             this.fecha = fecha;
         }
-
         #endregion
     }
 }

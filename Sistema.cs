@@ -55,17 +55,14 @@ namespace Obligatorio1
 
         //PRECARGA
 
-        private void PrecargaCentros() //AgregarCentro(nombre: string, direccion: string)
+        private void PrecargaCentros()
         {
             AgregarCentro("Soriano", "Cerro largo 1432");
             AgregarCentro("Mercedes", "Misiones 298");
             AgregarCentro("Montevideo", "Arenal Grabde 1729");
             AgregarCentro("Paysandu", "Canelones 785");
             AgregarCentro("Tacuarembo", "Mercedes 1324");
-
         }
-
-        //List<Object> listaProd = new {producto = producto, cantidad = cantidad},
 
         private void PrecargaDonaciones()
         {
@@ -88,7 +85,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[1], cantidad = 2 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionC = new DateTime(2019, 10, 04);
-            AgregarDonacionProducto(870.25m, fechaDonacionC, "Soriano", listaProductos);
+            AgregarDonacionProducto(fechaDonacionC, "Soriano", listaProductos);
             //Donacion B
             listaProductos.Clear();
             productoDonado = new { producto = productos[1], cantidad = 1 };
@@ -104,7 +101,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[9], cantidad = 3 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionD = new DateTime(2019, 10, 04);
-            AgregarDonacionProducto(1001.01m, fechaDonacionD, "Montevideo", listaProductos);
+            AgregarDonacionProducto(fechaDonacionD, "Montevideo", listaProductos);
             //Donacion C
             listaProductos.Clear();
             productoDonado = new { producto = productos[2], cantidad = 2 };
@@ -112,7 +109,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[8], cantidad = 10 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionE = new DateTime(2019, 11, 12);
-            AgregarDonacionProducto(1999.99m, fechaDonacionE, "Montevideo", listaProductos);
+            AgregarDonacionProducto(fechaDonacionE, "Montevideo", listaProductos);
             //Donacion D
             listaProductos.Clear();
             productoDonado = new { producto = productos[2], cantidad = 2 };
@@ -130,7 +127,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[9], cantidad = 5 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionF = new DateTime(2019, 10, 04);
-            AgregarDonacionProducto(2575, fechaDonacionF, "Tacuarembo", listaProductos);
+            AgregarDonacionProducto(fechaDonacionF, "Tacuarembo", listaProductos);
         }
 
         private void PrecargaProductos()
@@ -195,14 +192,17 @@ namespace Obligatorio1
             return donacionAgregada;
         }
 
-        public bool AgregarDonacionProducto(decimal valorDonacion, DateTime fecha, string nombreCentro, List<Object> listaProductos)
+        public bool AgregarDonacionProducto(DateTime fecha, string nombreCentro, List<Object> listaProductos)
         {
             bool donacionAgregada = false;
-            DonacionProd unaDp = new DonacionProd(valorDonacion, fecha, listaProductos);
-            if (AgregarDonacionACentro(unaDp, nombreCentro))
+            if (listaProductos.Count > 0)
             {
-                donaciones.Add(unaDp);
-                donacionAgregada = true;
+                DonacionProd unaDp = new DonacionProd(fecha, listaProductos);
+                if (AgregarDonacionACentro(unaDp, nombreCentro))
+                {
+                    donaciones.Add(unaDp);
+                    donacionAgregada = true;
+                }
             }
             return donacionAgregada;
         }
@@ -297,7 +297,7 @@ namespace Obligatorio1
             return aux;
         }
 
-        public string SolicitarTipoProd(Sistema unS, int numTipo)
+        public string SolicitarTipoProd(int numTipo)
         {
             string tipoEnum = Enum.GetName(typeof(Producto.TipoProducto), numTipo);
             return tipoEnum;

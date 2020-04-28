@@ -47,12 +47,9 @@ namespace Obligatorio1
         {
             get { return precio; }
         }
-
-
         #endregion
 
-        #region Metodos
-
+        #region 
         public Producto(string nombre, decimal peso, decimal precio, int tipo)
         {
             this.id = ++ultimoId;
@@ -106,7 +103,6 @@ namespace Obligatorio1
             }
             return retorno;
         }
-
         #endregion
 
     }
