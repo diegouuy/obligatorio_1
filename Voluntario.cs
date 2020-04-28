@@ -44,6 +44,7 @@ namespace Obligatorio1
 
         public Voluntario (string nombre, int cedula, int telefono, DateTime fechaNacimiento)
         {
+            //if (validaciones true) agregar datos
             this.nombre = nombre;
             this.cedula = cedula;
             this.telefono = telefono;
@@ -56,6 +57,25 @@ namespace Obligatorio1
             return retorno;
         }
 
+        public static bool ValidarNombreVoluntario(string nombre)
+        {
+            return nombre != "" && nombre != " ";
+        }
+
+        public static bool ValidarCIVoluntario(int ci)
+        {
+            return ci.ToString().Length >= 7 & ci.ToString().Length <= 9;
+        }
+
+        public static bool ValidarTelVoluntario(int tel)
+        {
+            return tel.ToString().Length >= 8 && tel.ToString().Length <= 9;
+        }
+
+        public static bool ValidarFechaNac(DateTime fechaNac)
+        {
+            return fechaNac <= DateTime.Now.AddYears(-16);
+        }
         #endregion
 
     }

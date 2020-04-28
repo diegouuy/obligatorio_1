@@ -50,7 +50,7 @@ namespace Obligatorio1
             PrecargaProductos();
             PrecargaCentros();
             PrecargaDonaciones();
-            //PrecargaVoluntarios();
+            PrecargaVoluntarios();
         }
 
         //PRECARGA
@@ -145,28 +145,88 @@ namespace Obligatorio1
             AltaProducto("Jabon liquido", 3, 110, 5);
         }
 
-        //private void PrecargaVoluntarios() //MM/dd/yyyy //AgregarVoluntario(nombre: string, cedula: int, telefono: int, fechaNac: date)
-        //{
-        //    AgregarVoluntario("Edhys", 47479537, 098650104, 04/24/2019);
-        //    AgregarVoluntario("Diego", 38548711, 099345761, 04 / 24 / 2019);
-        //    AgregarVoluntario("Juan", 34598123, 098549123, 04 / 24 / 2019);
-        //    AgregarVoluntario("Perez", 47632567, 099876543, 04 / 24 / 2019);
-        //    AgregarVoluntario("Maxi", 32198754, 099123765, 04 / 24 / 2019);
-        //    AgregarVoluntario("Sofia", 36745612, 098345612, 04 / 24 / 2019);
-        //    AgregarVoluntario("Carolina", 34509847, 098435678, 04 / 24 / 2019);
-        //    AgregarVoluntario("Gabriela", 47234509, 098123678, 04 / 24 / 2019);
-        //    AgregarVoluntario("Luciana", 45678234, 098123098, 04 / 24 / 2019);
-        //    AgregarVoluntario("Ornella", 23459876, 097543654, 04 / 24 / 2019);
-        //}
-        //public bool AgregarVoluntario(string nombre, int cedula, int telefono, DateTime fechaNac)
-        //{
-        //    //valido dato no vacios 
-        //    if (nombre != "" && cedula != "" && telefono != "" && fechaNac != "")
-        //    {
-        //    AgregarVoluntario unV = new Voluntario(nombre, cedula, telefono, fechaNac);
-        //    Voluntario.Add(unV);
-        //    }
-        //}
+        private void PrecargaVoluntarios()
+        {
+            Voluntario voluntarioAgregado = null;
+            voluntarioAgregado = AgregarVoluntario("Edhys", 47479537, 098650104, new DateTime(1995, 05, 11));
+            AgregarVoluntarioACentro(voluntarioAgregado, 0);
+            voluntarioAgregado = AgregarVoluntario("Diego", 38548711, 099345761, new DateTime(1987, 08, 01));
+            AgregarVoluntarioACentro(voluntarioAgregado, 4);
+            voluntarioAgregado = AgregarVoluntario("Juan", 34598123, 098549123, new DateTime(2002, 12, 19));
+            AgregarVoluntarioACentro(voluntarioAgregado, 1);
+            voluntarioAgregado = AgregarVoluntario("Perez", 47632567, 099876543, new DateTime(2001, 01, 30));
+            AgregarVoluntarioACentro(voluntarioAgregado, 0);
+            AgregarVoluntarioACentro(voluntarioAgregado, 0);                                                        //Esta precarga fall porque el voluntario ya fue asignado a ese mismo centro
+            voluntarioAgregado = AgregarVoluntario("Maxi", 32198754, 099123765, new DateTime(1979, 11, 14));
+            AgregarVoluntarioACentro(voluntarioAgregado, 2);
+            voluntarioAgregado = AgregarVoluntario("Sofia", 36745612, 098345612, new DateTime(1970, 10, 06));
+            AgregarVoluntarioACentro(voluntarioAgregado, 2);
+            voluntarioAgregado = AgregarVoluntario("Carolina", 34509847, 098435678, new DateTime(1995, 06, 07));    //Esta precarga es valida
+            AgregarVoluntarioACentro(voluntarioAgregado, 0);
+            voluntarioAgregado = AgregarVoluntario("Carolina", 34509847, 098435678, new DateTime(1995, 06, 07));    //Esta precarga falla porque el voluntario ya existe
+            voluntarioAgregado = AgregarVoluntario("Gabriela", 47234509, 098123678, new DateTime(1992, 05, 17));
+            AgregarVoluntarioACentro(voluntarioAgregado, 0);
+            AgregarVoluntarioACentro(voluntarioAgregado, 4);
+            AgregarVoluntarioACentro(voluntarioAgregado, 3);
+            voluntarioAgregado = AgregarVoluntario("", 47234509, 098123678, new DateTime(1992, 05, 17));            //Esta precarga falla porque el nombre no es valido
+            voluntarioAgregado = AgregarVoluntario("Luciana", 45678234, 098123098, new DateTime(1991, 03, 22));
+            AgregarVoluntarioACentro(voluntarioAgregado, 0);
+            AgregarVoluntarioACentro(voluntarioAgregado, 4);
+            voluntarioAgregado = AgregarVoluntario("Ornella", 23459876, 097543654, new DateTime(2000, 06, 27));
+            AgregarVoluntarioACentro(voluntarioAgregado, 1);
+        }
+        public Voluntario AgregarVoluntario(string nombre, int cedula, int telefono, DateTime fechaNac)
+        {
+            Voluntario voluntarioAgregado = null;
+            if (!VoluntarioExistente(nombre) && Voluntario.ValidarNombreVoluntario(nombre) && Voluntario.ValidarCIVoluntario(cedula) && Voluntario.ValidarTelVoluntario(telefono) && Voluntario.ValidarFechaNac(fechaNac))
+            {
+                Voluntario unV = new Voluntario(nombre, cedula, telefono, fechaNac);
+                voluntarios.Add(unV);
+                voluntarioAgregado = unV;
+            }
+            return voluntarioAgregado;
+        }
+        public bool VoluntarioExistente(string nombreNuevoVoluntario)
+        {
+            bool existe = false;
+            int i = 0;
+            while (existe == false && i < voluntarios.Count)
+            {
+                if (voluntarios[i].Nombre == nombreNuevoVoluntario)
+                {
+                    existe = true;
+                }
+                i++;
+            }
+            return existe;
+        }
+        public bool AgregarVoluntarioACentro(Voluntario unV, int posicionCentro)
+        {
+            bool agregado = false;
+            if (!VoluntarioExisteEnCentro(unV.Nombre, posicionCentro))
+            {
+                centros[posicionCentro].Voluntarios.Add(unV);
+                agregado = true;
+            }
+            return agregado;
+        }
+
+        public bool VoluntarioExisteEnCentro(string nombreVoluntario, int posicionCentro)
+        {
+            bool existe = false;
+            int i = 0;
+            List<Voluntario> listaVoluntarios = centros[posicionCentro].Voluntarios;
+            while (existe == false && i < listaVoluntarios.Count)
+            {
+                if (listaVoluntarios[i].Nombre == nombreVoluntario)
+                {
+                    existe = true;
+                }
+                i++;
+            }
+            return existe;
+        }
+
         public bool AgregarCentro(string nombre, string direccion)
         {
             bool centroCreado = false;
