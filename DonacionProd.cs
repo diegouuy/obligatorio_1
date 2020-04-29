@@ -30,29 +30,18 @@ namespace Obligatorio1
         #endregion
 
         #region Metodos
-        public DonacionProd(DateTime fecha, List<Object> productosDonados): base(fecha)
+        public DonacionProd(decimal valorDonacion, DateTime fecha, List<Object> productosDonados): base(fecha)
         {
-            decimal valorDonacion = CalcValorDonacionProd(prodDonados);
             decimal valorDesc = DescDonacionProd(valorDonacion);
             this.valorDonacion = valorDonacion;
             this.valorDesc = valorDesc;
             prodDonados = new List<Object>();
             prodDonados = productosDonados;
         }
-
         public override string ToString()
         {
             string retorno = "Id donacion: " + Id + " - Fecha: " + Fecha + " - " + valorDonacion + " " + valorDesc;
             return retorno;
-        }
-        public decimal CalcValorDonacionProd(List<Object> listaProdDonados)
-        {
-            decimal valorDonacion = 0;
-            //foreach (Producto unP in listaProdDonados)
-            //{
-            //    valorDonacion += unP[0] * listaProdDonados
-            //}
-            return valorDonacion;
         }
         public static decimal DescDonacionProd(decimal importeDonacion)
         {
@@ -74,7 +63,6 @@ namespace Obligatorio1
             }
             return montoDescuento;
         }
-
         #endregion
     }
 }

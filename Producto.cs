@@ -58,13 +58,11 @@ namespace Obligatorio1
             this.precio = precio;
             this.tipo = (TipoProducto)tipo;
         }
-
         public override string ToString()
         {
             string retorno = "- " + nombre + ":\n  * Id: " + id + "\n  * Peso: " + peso + "\n  * Precio: $" + precio + "\n  * Tipo: " + tipo;
             return retorno;
         }
-
         public static bool ValidarNombre(string nombre)
         {
             bool nombreValido = false;
@@ -74,7 +72,6 @@ namespace Obligatorio1
             }
             return nombreValido;
         }
-
         public static bool ValidarPeso(decimal peso)
         {
             bool pesoValido = false;
@@ -93,7 +90,6 @@ namespace Obligatorio1
             }
             return precioValido;
         }
-
         public static bool ValidarTipo(int tipo)
         {
             bool retorno = false;
@@ -104,6 +100,5 @@ namespace Obligatorio1
             return retorno;
         }
         #endregion
-
     }
 }

@@ -76,7 +76,7 @@ namespace Obligatorio1
             //Lista y objeto auxiliar para agregar enviar en el metodo AgregarDonacionProducto
             //Para cada donacion se completa una listaProductos
             //Donacion A
-            List<Object> listaProductos = new List<object>();
+            List<Object> listaProductos = new List<Object>();
             Object productoDonado = new { producto = productos[1], cantidad = 2 };
             listaProductos.Add(productoDonado);
             productoDonado = new { producto = productos[1], cantidad = 1 };
@@ -86,7 +86,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[1], cantidad = 2 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionC = new DateTime(2019, 10, 04);
-            AgregarDonacionProducto(fechaDonacionC, "Soriano", listaProductos);
+            AgregarDonacionProducto(899.0m, fechaDonacionC, "Soriano", listaProductos);
             //Donacion B
             listaProductos.Clear();
             productoDonado = new { producto = productos[1], cantidad = 1 };
@@ -102,7 +102,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[9], cantidad = 3 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionD = new DateTime(2019, 10, 04);
-            AgregarDonacionProducto(fechaDonacionD, "Montevideo", listaProductos);
+            AgregarDonacionProducto(1250, fechaDonacionD, "Montevideo", listaProductos);
             //Donacion C
             listaProductos.Clear();
             productoDonado = new { producto = productos[2], cantidad = 2 };
@@ -110,7 +110,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[8], cantidad = 10 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionE = new DateTime(2019, 11, 12);
-            AgregarDonacionProducto(fechaDonacionE, "Montevideo", listaProductos);
+            AgregarDonacionProducto(3780.50m, fechaDonacionE, "Montevideo", listaProductos);
             //Donacion D
             listaProductos.Clear();
             productoDonado = new { producto = productos[2], cantidad = 2 };
@@ -128,7 +128,7 @@ namespace Obligatorio1
             productoDonado = new { producto = productos[9], cantidad = 5 };
             listaProductos.Add(productoDonado);
             DateTime fechaDonacionF = new DateTime(2019, 10, 04);
-            AgregarDonacionProducto(fechaDonacionF, "Tacuarembo", listaProductos);
+            AgregarDonacionProducto(2377, fechaDonacionF, "Tacuarembo", listaProductos);
         }
 
         private void PrecargaProductos()
@@ -253,12 +253,12 @@ namespace Obligatorio1
             return donacionAgregada;
         }
 
-        public bool AgregarDonacionProducto(DateTime fecha, string nombreCentro, List<Object> listaProductos)
+        public bool AgregarDonacionProducto(decimal valorDonacion, DateTime fecha, string nombreCentro, List<Object> listaProductos)
         {
             bool donacionAgregada = false;
             if (listaProductos.Count > 0)
             {
-                DonacionProd unaDp = new DonacionProd(fecha, listaProductos);
+                DonacionProd unaDp = new DonacionProd(valorDonacion, fecha, listaProductos);
                 if (AgregarDonacionACentro(unaDp, nombreCentro))
                 {
                     donaciones.Add(unaDp);
@@ -309,9 +309,6 @@ namespace Obligatorio1
             }
             return retorno;
         }
-
-        //BUSQUEDAS
-
         public Centro BuscarCentro(string nombreCentro)
         {
             Centro elCentro = null;
@@ -326,7 +323,6 @@ namespace Obligatorio1
             }
             return elCentro;
         }
-
         public string ObtenerNombreCentro(Sistema unS, int posicionCentro) //Posicion centro, es el numero de posicion en la lista centros
         {
             return unS.centros[posicionCentro].Nombre;
@@ -373,9 +369,6 @@ namespace Obligatorio1
             }
             return existe;
         }
-
-         
-
         #endregion
     }
 }
